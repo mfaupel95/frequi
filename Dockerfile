@@ -1,11 +1,11 @@
 FROM node:26.12.1-alpine AS ui-builder
 
 RUN mkdir /app \
-    && corepack enable
+    && npm install --global --allow-scripts=pnpm pnpm@12.16.1
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml /app/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /app/
 
 RUN apk add --update --no-cache g++ make git \
     && pnpm install --frozen-lockfile \
