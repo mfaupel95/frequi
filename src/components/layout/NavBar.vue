@@ -117,9 +117,27 @@ const navItems = computed<NavItem[]>(() => [
     icon: 'i-mdi-view-dashboard',
   },
   {
-    label: 'Chart',
-    to: '/graph',
-    icon: 'i-mdi-chart-line',
+    label: 'Research',
+    visible: botStore.hasBots,
+    icon: 'i-mdi-flask-outline',
+    children: [
+      {
+        label: 'Chart & Indicators',
+        to: '/graph',
+        icon: 'i-mdi-chart-line',
+      },
+      {
+        label: 'Strategies',
+        to: '/strategies',
+        icon: 'i-mdi-script-text-outline',
+      },
+      {
+        label: 'Backtesting',
+        to: '/backtest',
+        visible: botStore.hasBots,
+        icon: 'i-mdi-chart-box-outline',
+      },
+    ],
   },
   {
     label: 'Logs',
@@ -131,12 +149,6 @@ const navItems = computed<NavItem[]>(() => [
     to: '/settings',
     mobileOnly: true,
     icon: 'i-mdi-cog',
-  },
-  {
-    label: 'Backtest',
-    to: '/backtest',
-    visible: botStore.canRunBacktest,
-    icon: 'i-mdi-currency-usd',
   },
   {
     label: 'Analysis',
